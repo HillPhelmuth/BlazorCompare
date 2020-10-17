@@ -1,0 +1,69 @@
+﻿@page "/tweetProto"
+<h1 class="text-center">gRPC-web vs Rest Api</h1>
+
+<BSContainer>
+    <BSRow>
+        <BSCol XS="6" style="max-height: 90vh; overflow: scroll; border:3px solid black">
+            <h3 class="text-center">gRPC-web</h3>
+            <p>Number of tweets to request: @_protoRequest</p>
+            <input type="range" min="1" max="7000" style="width: 90%;color:blue" @bind-value="_protoRequest" @bind-value:event="onchange">
+            <button class="btn btn-primary" @onclick="GetAllTweetDetails">Get Tweet Details (Proto)</button>
+           
+            @if (_tweetDetails?.TweetDeets != null && _tweetDetails.TweetDeets.Count > 0)
+            {
+                <h4 class="text-center">Tweet Details</h4>
+                <h6>Time Elapsed for Rest Api request: <span style="font-weight: 700; font-size:120%">@_deetTime</span></h6>
+                @*@if (protoBusy)
+                {
+                    <SpinKitCircle />
+                }*@
+                <ol>
+                    @foreach (var deet in _tweetDetails.TweetDeets)
+                    {
+                        <li>
+                            <ul>
+                                <li>Id: @deet.IdStr</li>
+                                <li>Created: @deet.CreatedAt</li>
+                                <li>Retweet: @deet.RetweetCount</li>
+                                <li>Favorites: @deet.FavoriteCount</li>
+                                <li>Text: @deet.Text</li>
+                            </ul>
+                        </li>
+                    }
+                </ol>
+            }
+        </BSCol>
+        <BSCol XS="6">
+            <div style="max-height: 90vh; overflow: scroll; border:3px solid black">
+                <h3 class="text-center">Rest</h3>
+                <p>Number of tweets to request: @_restRequest</p>
+                <input type="range" min="1" max="7000" style="width:90%" @bind-value="_restRequest" @bind-value:event="onchange">
+                <button class="btn btn-primary" @onclick="GetRestDetails">Get Tweet Details (Rest)</button>
+
+                @if (_restDetails?.Tweeters != null)
+                {
+                    <h4 class="text-center">Tweets Details Rest</h4>
+                    <h6>Time Elapsed:<span style="font-weight: 700; font-size:120%"> @_restDeetsTime</span></h6>
+                    @*@if (restBusy)
+                    {
+                        <SpinKitCircle />
+                    }*@
+                    <ol>
+                        @foreach (var deet in _restDetails.Tweeters)
+                        {
+                            <li>
+                                <ul>
+                                    <li>Id: @deet.IdStr</li>
+                                    <li>Created: @deet.CreatedAt</li>
+                                    <li>Retweet: @deet.RetweetCount</li>
+                                    <li>Favorites: @deet.FavoriteCount</li>
+                                    <li>Text: @deet.Text</li>
+                                </ul>
+                            </li>
+                        }
+                    </ol>
+                }
+            </div>
+        </BSCol>
+    </BSRow>
+</BSContainer>

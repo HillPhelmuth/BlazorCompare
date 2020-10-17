@@ -1,0 +1,36 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+option csharp_namespace = "TestPerform5proto.Client.Protos";
+
+package TweeterService;
+
+service TweeterService{
+	rpc GetAllTweets (google.protobuf.Empty) returns (GetAllTweetsResponse);
+	rpc GetAllTweetDetails (GetTweetRequest) returns (GetAllTweetDetailsResponse);
+}
+
+message GetAllTweetsResponse{
+	int64 id = 1;
+	int64 count = 2;
+	repeated TweetText texts = 3;
+	message TweetText{
+		string text = 1;
+	}
+}
+
+message GetAllTweetDetailsResponse{
+	int64 id = 1;
+	int64 count = 2;
+	repeated TweetDeets tweetDeets = 3;
+
+	message TweetDeets{
+		string text = 1;
+		string createdAt = 2;
+		int64 retweetCount = 3;
+		int64 favoriteCount = 4;
+		string idStr = 5;
+	}
+}
+message GetTweetRequest{
+	int32 count = 1;
+}
