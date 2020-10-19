@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using BlazorStrap;
 using Grpc.Net.Client;
 using Grpc.Net.Client.Web;
+using Microsoft.JSInterop;
 using TestPerform5proto.Client.Protos;
 
 namespace TestPerform5proto.Client
@@ -33,10 +34,10 @@ namespace TestPerform5proto.Client
                 });
                 var client = new TweeterService.TweeterServiceClient(channel);
                 return client;
-                //var httpHandler = new GrpcWebHandler(GrpcWebMode.GrpcWeb, new HttpClientHandler());
-
-                //return GrpcChannel.ForAddress(backendUrl, new GrpcChannelOptions { HttpHandler = httpHandler });
+               
             });
+            builder.Services.AddSingleton(serviceProvider => (IJSInProcessRuntime)serviceProvider.GetRequiredService<IJSRuntime>());
+            builder.Services.AddSingleton(serviceProvider => (IJSUnmarshalledRuntime)serviceProvider.GetRequiredService<IJSRuntime>());
             builder.Services.AddBootstrapCss();
             await builder.Build().RunAsync();
         }

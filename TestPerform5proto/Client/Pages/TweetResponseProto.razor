@@ -7,16 +7,16 @@
             <h3 class="text-center">gRPC-web</h3>
             <p>Number of tweets to request: @_protoRequest</p>
             <input type="range" min="1" max="7000" style="width: 90%;color:blue" @bind-value="_protoRequest" @bind-value:event="onchange">
-            <button class="btn btn-primary" @onclick="GetAllTweetDetails">Get Tweet Details (Proto)</button>
-           
+            <button class="btn btn-primary" @onclick="GetgRpc">Get Tweet Details (Proto)</button>
+            @if (protoBusy)
+            {
+                <SpinKitCircle />
+            }
             @if (_tweetDetails?.TweetDeets != null && _tweetDetails.TweetDeets.Count > 0)
             {
                 <h4 class="text-center">Tweet Details</h4>
-                <h6>Time Elapsed for Rest Api request: <span style="font-weight: 700; font-size:120%">@_deetTime</span></h6>
-                @*@if (protoBusy)
-                {
-                    <SpinKitCircle />
-                }*@
+                <h6>Time Elapsed for gRPC request: <span style="font-weight: 700; font-size:120%">@_deetTime</span></h6>
+               
                 <ol>
                     @foreach (var deet in _tweetDetails.TweetDeets)
                     {
@@ -38,16 +38,16 @@
                 <h3 class="text-center">Rest</h3>
                 <p>Number of tweets to request: @_restRequest</p>
                 <input type="range" min="1" max="7000" style="width:90%" @bind-value="_restRequest" @bind-value:event="onchange">
-                <button class="btn btn-primary" @onclick="GetRestDetails">Get Tweet Details (Rest)</button>
-
+                <button class="btn btn-primary" @onclick="GetRest">Get Tweet Details (Rest)</button>
+                @if (restBusy)
+                {
+                    <SpinKitCircle />
+                }
                 @if (_restDetails?.Tweeters != null)
                 {
                     <h4 class="text-center">Tweets Details Rest</h4>
-                    <h6>Time Elapsed:<span style="font-weight: 700; font-size:120%"> @_restDeetsTime</span></h6>
-                    @*@if (restBusy)
-                    {
-                        <SpinKitCircle />
-                    }*@
+                    <h6>Time Elapsed for Rest Api request:<span style="font-weight: 700; font-size:120%"> @_restDeetsTime</span></h6>
+                   
                     <ol>
                         @foreach (var deet in _restDetails.Tweeters)
                         {

@@ -11,21 +11,21 @@ namespace TestPerform5proto.Server.Services
 {
     public class TwitterServiceRest
     {
-        public Task<Tweets> GetAllTweets()
+        private readonly TweeterDetails _tweeterDetails;
+
+        public TwitterServiceRest()
         {
-            string result = ResultFromJsonFile();
-
-            var deets = JsonSerializer.Deserialize<TweeterDetails>(result);
-            var texts = deets.Tweeters.Select(x => x.Text).ToList();
-            var count = texts.Count;
-            return Task.FromResult(new Tweets {Count = count, Id = 1, Texts = texts});
+            var detailsJson = ResultFromJsonFile();
+            _tweeterDetails = JsonSerializer.Deserialize<TweeterDetails>(detailsJson);
         }
-
+        // Weird compiler error requires adding back this method. For some reason it's still seeing the reference to this old method in the controller.
+        [Obsolete("This should be unnecessary")]
+        public async Task<Tweets> GetAllTweets(){return new Tweets();}
         public Task<TweeterDetails> GetAllDetails(int count)
         {
             count = count <= 7000 ? count : 7000;
             string result = ResultFromJsonFile();
-            var deets = JsonSerializer.Deserialize<TweeterDetails>(result);
+            var deets = _tweeterDetails;
             var tweeters = deets.Tweeters.GetRange(0, count);
             deets.Tweeters = tweeters;
             return Task.FromResult(deets);

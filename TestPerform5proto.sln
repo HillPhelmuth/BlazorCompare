@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30608.117
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPerform5proto.Server", "TestPerform5proto\Server\TestPerform5proto.Server.csproj", "{03AD8143-F298-41C9-B360-F3E150927E54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestPerform5proto.Server", "TestPerform5proto\Server\TestPerform5proto.Server.csproj", "{03AD8143-F298-41C9-B360-F3E150927E54}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPerform5proto.Client", "TestPerform5proto\Client\TestPerform5proto.Client.csproj", "{2ACB5255-A4EF-4017-B0C6-EEB3935AD5A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestPerform5proto.Client", "TestPerform5proto\Client\TestPerform5proto.Client.csproj", "{2ACB5255-A4EF-4017-B0C6-EEB3935AD5A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPerform5proto.Shared", "TestPerform5proto\Shared\TestPerform5proto.Shared.csproj", "{220D6D4B-3C6E-4185-9D72-B88B4376F6E1}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Protos", "Protos", "{B9643FA2-DD2D-4BE4-870A-6248C6DCA09F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestPerform5proto.Shared", "TestPerform5proto\Shared\TestPerform5proto.Shared.csproj", "{220D6D4B-3C6E-4185-9D72-B88B4376F6E1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

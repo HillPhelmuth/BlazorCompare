@@ -28,11 +28,16 @@ namespace TestPerform5proto.Client.Pages
         private int _restRequest = 2000;
         private bool protoBusy;
         private bool restBusy;
-       
-        private async Task GetAllTweetDetails()
+
+        private void GetgRpc()
         {
             protoBusy = true;
             StateHasChanged();
+            _ = GetDetailsRPC();
+        }
+        private async Task GetDetailsRPC()
+        {
+            
             var sw = new Stopwatch();
             sw.Start();
             _tweetDetails = await Client.GetAllTweetDetailsAsync(new GetTweetRequest{Count = _protoRequest});
@@ -43,18 +48,23 @@ namespace TestPerform5proto.Client.Pages
             await InvokeAsync(StateHasChanged);
         }
 
-       
-        private async Task GetRestDetails()
+        private void GetRest()
         {
             restBusy = true;
             StateHasChanged();
+            _ = GetDetailsRest();
+        }
+       
+        private async Task GetDetailsRest()
+        {
+            
             var sw = new Stopwatch();
             sw.Start();
             _restDetails = await Http.GetFromJsonAsync<TweeterDetails>($"api/tweeterRest/details/{_restRequest}");
             sw.Stop();
             Console.WriteLine($"Rest tweet Details took {sw.ElapsedMilliseconds}ms");
             _restDeetsTime = $" {sw.ElapsedMilliseconds}ms";
-            protoBusy = false;
+            restBusy = false;
             await InvokeAsync(StateHasChanged);
         }
     }
