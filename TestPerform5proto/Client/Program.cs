@@ -27,7 +27,7 @@ namespace TestPerform5proto.Client
             {
                
                 var config = services.GetRequiredService<IConfiguration>();
-                var backendUrl = config["BackendUrl"];
+                var backendUrl = config["BackendUrl"] ?? builder.HostEnvironment.BaseAddress;
                 var channel = GrpcChannel.ForAddress(backendUrl, new GrpcChannelOptions
                 {
                     HttpHandler = new GrpcWebHandler(GrpcWebMode.GrpcWeb, new HttpClientHandler())
